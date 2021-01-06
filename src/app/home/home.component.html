@@ -1,0 +1,46 @@
+<div class="loading-overlay" *ngIf="loading">
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>
+<div>
+<p>
+  <ngb-alert [dismissible]="false">
+    <p style="font-size: large;"><b>{{title}}</b></p>
+  </ngb-alert>
+</p>
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">S.No</th>
+      <th scope="col">State</th>
+      <th scope="col">District</th>
+      <th scope="col">Market</th>
+      <th scope="col">Commodity</th>
+      <th scope="col">Variety</th>
+      <th scope="col">Arrival Date</th>
+      <th scope="col">Min Price (&#8377;)</th>
+      <th scope="col">Max Price (&#8377;)</th>
+      <th scope="col">Modal Price (&#8377;)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let record of records; let i=index;">
+      <th scope="row">{{ i+1 }}</th>
+      <td>{{ record.state }}</td>
+      <td>{{ record.district }}</td>
+      <td>{{ record.market }}</td>
+      <td>{{ record.commodity }}</td>
+      <td>{{ record.variety }}</td>
+      <td>{{ record.arrival_date }}</td>
+      <td>{{ record.min_price }}</td>
+      <td>{{ record.max_price }}</td>
+      <td>{{ record.modal_price }}</td>
+    </tr>
+    </tbody>
+  </table>
+
+    <div class='text-center'>
+      <button class="btn btn-success btn-lg" ngbTooltip="Click for more" placement="right" (click)="nextPage()">Next</button>
+    </div>
+</div>    
