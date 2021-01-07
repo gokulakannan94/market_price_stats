@@ -36,7 +36,7 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: publish
-        uses: tsunematsu21/actions-publish-gh-pages@v1.0.1
+      - uses: tsunematsu21/actions-publish-gh-pages@v1.0.1
         with:
           dir: dist
           branch: gh-pages
