@@ -22,17 +22,21 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: check out the repository
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1 #for installing node and npm
+        uses: actions/checkout@v2
+      - name: installing node 
+        uses: actions/setup-node@v1 #for installing node and npm
         with:
           node-version: '12.x'
 
       # Runs a single command using the runners shell
       - name: installation
         run: npm install
-      - run: npm install -g @angular/cli
-      - run: ng build --prod --output-path=dist --base-href="https://gokulakannan94.github.io/market_price_stats/"
+      - name: installing angular
+        run: npm install -g @angular/cli
+      - name: building application
+        run: ng build --prod --output-path=dist --base-href="https://gokulakannan94.github.io/market_price_stats/"
 
       # Runs a set of commands using the runners shell
       - name: publish
