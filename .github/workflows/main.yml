@@ -28,7 +28,7 @@ jobs:
       - name: installing node 
         uses: actions/setup-node@v1 #for installing node and npm
         with:
-          node-version: '12.16.3'
+          node-version: '12.x'
 
       # Runs a single command using the runners shell
       - name: installation
