@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { getLocaleDirection } from '@angular/common';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { CommonService } from './common.service';
 
 @Component({
@@ -6,7 +7,7 @@ import { CommonService } from './common.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   title = 'Marketpricestats';
   mailString:string;
   systemIP:[];
@@ -23,7 +24,30 @@ export class AppComponent implements OnInit {
       err =>{
         this.ip = 'Error while retrieving System IP';
       }
-    )
+    );
+    this.commonService.getWeatherDetails().subscribe(
+      test =>{
+        console.log("HI = "+test);
+      },
+      err =>{
+        console.log("Error "+err);
+      }
+    );
+  }
+
+  ngAfterViewInit(){
+    this.getLocationCoordinates();
+  }
+
+  getLocationCoordinates(){
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(
+        pos =>{
+          console.log("Latitide "+pos.coords.latitude);
+          console.log("Longitude "+pos.coords.longitude);
+        }
+      )
+    }
   }
 
   mailTo():void{

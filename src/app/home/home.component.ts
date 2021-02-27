@@ -16,8 +16,10 @@ export class HomeComponent implements AfterViewInit  {
   offset: number = 0;
   id: number[] = [];
   title: string = '';
+  alertMessage = '';
+  buttonText = 'Next';
   constructor(private commonService: CommonService) { 
-    this.getDetails(this.offset);
+    
   }
   
   nextPage():void{
@@ -34,15 +36,24 @@ export class HomeComponent implements AfterViewInit  {
           record => this.records.push(record)
         );
         this.id.push(this.id.length + this.records.length);
+        if(this.result.records.length == 0){
+          this.buttonText = 'Over';
+        }
         this.loading = false;
       },
       err =>{
+        this.loading = false;
         console.log("something error!!!");
+        this.alertMessage = 'something went wrong. Please try after some time!!!';
       }
     )
   }
 
+  close(): void{
+    this.alertMessage = '';
+  }
+
   ngAfterViewInit (): void {  
-    
+    this.getDetails(this.offset);
   }
 }

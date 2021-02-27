@@ -9,6 +9,9 @@
     <p style="font-size: large;"><b>{{title}}</b></p>
   </ngb-alert>
 </p>
+<p *ngIf = "alertMessage != ''">
+  <ngb-alert [type]="'danger'" (closed)="close()">{{ alertMessage }}</ngb-alert>
+</p>
 <table class="table table-striped">
     <thead>
     <tr>
@@ -41,6 +44,6 @@
   </table>
 
     <div class='text-center'>
-      <button class="btn btn-success btn-lg" ngbTooltip="Click for more" placement="right" (click)="nextPage()">Next</button>
+      <button class="btn btn-success btn-lg" ngbTooltip="Click for more" placement="right" (click)="nextPage()">{{ buttonText }}</button>
     </div>
 </div>    
